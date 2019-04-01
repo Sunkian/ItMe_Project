@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ItMe</string>
+    <string name="welcome_msg"> Bienvenue sur ItMe</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="demo_button">Demo Button</string>
+    <string name="keyword">Keyword...</string>
+    <string name="search">Rechercher</string>
+    <string name="Rechercher" />
+</resources>

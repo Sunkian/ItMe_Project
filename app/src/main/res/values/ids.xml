@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="editTextKeyword" type="id" />
+    <item name="buttonSearch" type="id" />
+    <item name="listViewPlaces" type="id" />
+    <item name="spinnerType" type="id" />
+</resources>
