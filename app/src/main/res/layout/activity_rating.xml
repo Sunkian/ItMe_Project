@@ -8,13 +8,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Main.RatingActivity">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="We hope you enjoyed your meal !"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
 
     <RatingBar
         android:id="@+id/simpleRatingBar"
-        android:layout_width="252dp"
+        android:layout_width="261dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginLeft="82dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginBottom="487dp"
         android:background="#DF2E92"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -53,4 +72,6 @@
         android:textColor="#fff"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+
 </RelativeLayout>
