@@ -12,6 +12,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
     private Button map;
     private Button retour;
+    private Button rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,17 @@ public class ConnexionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentRetour = new Intent(ConnexionActivity.this, MainActivity.class);
                 startActivity(intentRetour);
+            }
+        });
+
+        this.rating = (Button) findViewById(R.id.rating);
+        rating.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v23) {
+                Intent otherActivity2 = new Intent(getApplicationContext(), RatingActivity.class);
+                startActivity(otherActivity2);
+                finish();
             }
         });
 
