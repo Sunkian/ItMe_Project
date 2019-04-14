@@ -2,8 +2,19 @@
     <string name="app_name">ItMe</string>
     <string name="welcome_msg"> Bienvenue sur ItMe</string>
     <string name="title_activity_maps">Map</string>
-    <string name="demo_button">Demo Button</string>
+    <string name="demo_button">Types de restaurations</string>
     <string name="keyword">Keyword...</string>
     <string name="search">Rechercher</string>
     <string name="Rechercher" />
+    <string-array name="placeToEat">
+        <item>Restaurant</item>
+        <item>Bar</item>
+        <item>Cafe</item>
+        <item>Shopping_Mall</item>
+    </string-array>
+    <string-array name="radius">
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+    </string-array>
 </resources>
