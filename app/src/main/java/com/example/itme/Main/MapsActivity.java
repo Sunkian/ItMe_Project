@@ -76,12 +76,12 @@ public class MapsActivity extends FragmentActivity implements
         mapFragment.getMapAsync(this);
 
         //SpinnerLocation
-        spinnerlocation  = findViewById(R.id.locateSpinner);
+        spinnerlocation = findViewById(R.id.locateSpinner);
 
         spinnerlocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                typeOfSearch  = spinnerlocation.getSelectedItem().toString().toLowerCase();
+                typeOfSearch = spinnerlocation.getSelectedItem().toString().toLowerCase();
                 mMap.clear();
                 AccessData(typeOfSearch);
             }
@@ -108,13 +108,6 @@ public class MapsActivity extends FragmentActivity implements
 
             }
         });
-
-
-
-
-
-
-
     }
 
 
@@ -261,7 +254,7 @@ public class MapsActivity extends FragmentActivity implements
 
                 mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {  //Permet de, quand on clique sur la bulle info du marker, aller sur une nouvelle page où on affiche toutes les infos
                     @Override
-                    public void onInfoWindowClick(Marker marker) {
+                    public void onInfoWindowClick(Marker marker) {   //On peut cliquer sur le marqueur et ça va nous afficher les elements suivants
                         for (int j = 0; j < res.size(); j++) {
 
 
@@ -274,19 +267,22 @@ public class MapsActivity extends FragmentActivity implements
                                 List<Photos> photos = res.get(j).getPhotos();
 
 
-                                Intent intent = new Intent(MapsActivity.this, Data.class);  //
+                                Intent intent = new Intent(MapsActivity.this, Data.class);
                                 String user_name = "Alice";
                                 intent.putExtra("name", name);
-                                intent.putExtra("placeId", placeId );
+                                intent.putExtra("placeId", placeId);
                                 intent.putExtra("rating", String.valueOf(rating));
-                                intent.putExtra("photos", String.valueOf(photos));
+                                intent.putExtra("photos", String.valueOf(photos.get(0)));
                                 Log.d("name", "name : " + name);
 
-                                   for (int k = 0; k < photos.size(); k++){
-                                       Log.d("photos", "reference photo : " + photos.get(k).getHtmlAttributions());
+                                for (int k = 0; k < photos.size(); k++) {
+                                    Log.d("photos", "reference photo : " + photos.get(k).getHtmlAttributions());
                                 }
 
                                 Log.d("photo", "photo : " + photos);
+
+//                               //https://stackoverflow.com/questions/12210156/passing-the-image-in-putextra-in-android
+
 
                                 startActivity(intent);
 
