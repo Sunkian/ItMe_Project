@@ -14,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -60,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements
     private Spinner spinnerlocation, spinnerradius;
     private int radius = 1000;
     private String typeOfSearch = "restaurant";
+    private Button submitbutton;
 
 
     @Override
@@ -77,18 +79,17 @@ public class MapsActivity extends FragmentActivity implements
 
         //SpinnerLocation
         spinnerlocation = findViewById(R.id.locateSpinner);
-
         spinnerlocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 typeOfSearch = spinnerlocation.getSelectedItem().toString().toLowerCase();
                 mMap.clear();
-                AccessData(typeOfSearch);
+//                AccessData(typeOfSearch);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
+                // my code here
             }
 
         });
@@ -100,7 +101,7 @@ public class MapsActivity extends FragmentActivity implements
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 radius = Integer.parseInt(spinnerradius.getSelectedItem().toString());
                 mMap.clear();
-                AccessData(typeOfSearch);
+//                AccessData(typeOfSearch);
             }
 
             @Override
@@ -108,6 +109,19 @@ public class MapsActivity extends FragmentActivity implements
 
             }
         });
+
+        this.submitbutton = findViewById(R.id.submitbutton);
+        submitbutton.setOnClickListener(new AdapterView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                AccessData(typeOfSearch);
+            }
+
+        });
+
+
+
     }
 
 
