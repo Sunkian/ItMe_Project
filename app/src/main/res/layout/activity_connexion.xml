@@ -8,6 +8,8 @@
     tools:context=".Main.ConnexionActivity">
 
     <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+
         android:id="@+id/map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +24,8 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+
         android:id="@+id/retour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +44,7 @@
         app:layout_constraintVertical_bias="0.988" />
 
     <Button
+        style="@style/Widget.AppCompat.Button.Colored"
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

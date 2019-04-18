@@ -1,6 +1,6 @@
 package com.example.itme.api;
 
-import com.example.itme.entities.PlacesResults;
+        import com.example.itme.entities.PlacesResults;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,5 +15,4 @@ public interface GoogleMapAPI {
             @Query("type") String type,
             @Query("key") String key
     );
-
 }

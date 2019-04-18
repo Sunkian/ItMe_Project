@@ -134,6 +134,10 @@ public class MapsActivity extends FragmentActivity implements
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    /**
+     *
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) { //Créé la map, de google maps API
         mMap = googleMap;
@@ -159,6 +163,12 @@ public class MapsActivity extends FragmentActivity implements
         }
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -187,6 +197,10 @@ public class MapsActivity extends FragmentActivity implements
         googleApiClient.connect();
     }
 
+    /**
+     *
+     * @param location
+     */
     @Override
     public void onLocationChanged(Location location) { //Va etre appelée systematiquement à chaque fois que la personne change de location
 
@@ -213,7 +227,10 @@ public class MapsActivity extends FragmentActivity implements
         AccessData(typeOfSearch); // On appelle la méthode pour avoir tous les restaurants autour de la postion actuelle de la personne
     }
 
-
+    /**
+     *
+     * @param bundle
+     */
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
@@ -228,14 +245,26 @@ public class MapsActivity extends FragmentActivity implements
 
     }
 
+    /**
+     *
+     * @param i
+     */
     @Override
     public void onConnectionSuspended(int i) {
     }
 
+    /**
+     *
+     * @param connectionResult
+     */
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
+    /**
+     *
+     * @param type
+     */
     private void AccessData(String type) {
 
         GoogleMapAPI googlemapapi = APIClient.getClient().create(GoogleMapAPI.class);
@@ -262,8 +291,6 @@ public class MapsActivity extends FragmentActivity implements
                     marker.position(latLng);
                     marker.title(nom).snippet(placeId);  //Le nom du marker prend le nom de restaurant
                     mMap.addMarker(marker);  //On place le marker sur la map
-
-
                 }
 
                 mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {  //Permet de, quand on clique sur la bulle info du marker, aller sur une nouvelle page où on affiche toutes les infos
@@ -279,6 +306,7 @@ public class MapsActivity extends FragmentActivity implements
                                 String placeId = res.get(j).getPlaceId();
                                 Double rating = res.get(j).getRating();
                                 List<Photos> photos = res.get(j).getPhotos();
+                                Integer priceLevel = res.get(j).getPriceLevel();
 
 
                                 Intent intent = new Intent(MapsActivity.this, Data.class);
@@ -286,7 +314,9 @@ public class MapsActivity extends FragmentActivity implements
                                 intent.putExtra("name", name);
                                 intent.putExtra("placeId", placeId);
                                 intent.putExtra("rating", String.valueOf(rating));
-                                intent.putExtra("photos", String.valueOf(photos.get(0)));
+                                intent.putExtra("photos", String.valueOf(photos.get(0).getPhotoReference()));
+                                intent.putExtra("priceLevel", String.valueOf(priceLevel));
+
                                 Log.d("name", "name : " + name);
 
                                 for (int k = 0; k < photos.size(); k++) {
