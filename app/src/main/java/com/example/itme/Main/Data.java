@@ -28,20 +28,20 @@ public class Data extends AppCompatActivity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        String placeId = intent.getStringExtra("placeId");
+//        String placeId = intent.getStringExtra("placeId");
         String rating = intent.getStringExtra("rating");
         String photo = intent.getStringExtra("photos");
         String priceLevel = intent.getStringExtra("priceLevel");
 
         System.out.println("Le nom est " + name);
-        System.out.println("L'id est " + placeId);
+//        System.out.println("L'id est " + placeId);
         System.out.println("Le rating est " + rating);
         System.out.println("Le price level est " + priceLevel);
 
         TextView nameView = (TextView) findViewById(R.id.name);
         nameView.setText(name);
-        TextView placeIdView = (TextView) findViewById(R.id.placeId);
-        placeIdView.setText(placeId);
+//        TextView placeIdView = (TextView) findViewById(R.id.placeId);
+//        placeIdView.setText(placeId);
         TextView ratingView = (TextView) findViewById(R.id.rating);
         ratingView.setText(rating);
         TextView priceLevelView = (TextView) findViewById(R.id.price_level);

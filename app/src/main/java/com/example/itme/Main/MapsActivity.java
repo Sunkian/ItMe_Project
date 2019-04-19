@@ -62,6 +62,7 @@ public class MapsActivity extends FragmentActivity implements
     private int radius = 1000;
     private String typeOfSearch = "restaurant";
     private Button submitbutton;
+    private String vicinity;
 
 
     @Override
@@ -286,10 +287,11 @@ public class MapsActivity extends FragmentActivity implements
                     String nom = res.get(i).getName();
                     String placeId = res.get(i).getPlaceId();
                     String adress = res.get(i).getIcon();
+                    String vicinity = res.get(i).getVicinity();
 //Photos photo = res.get(i).getPhotos().get(0);
 //Boolean isOpen = res.get(i).getOpeningHours().getOpenNow();
                     marker.position(latLng);
-                    marker.title(nom).snippet(placeId);  //Le nom du marker prend le nom de restaurant
+                    marker.title(nom).snippet(vicinity);  //Le nom du marker prend le nom de restaurant
                     mMap.addMarker(marker);  //On place le marker sur la map
                 }
 
@@ -299,11 +301,11 @@ public class MapsActivity extends FragmentActivity implements
                         for (int j = 0; j < res.size(); j++) {
 
 
-                            if (marker.getSnippet().equals(res.get(j).getPlaceId())) {
+                            if (marker.getSnippet().equals(res.get(j).getVicinity())) {
                                 double lat = res.get(j).getGeometry().getLocation().getLat();
                                 double lng = res.get(j).getGeometry().getLocation().getLng();
                                 String name = res.get(j).getName();
-                                String placeId = res.get(j).getPlaceId();
+//                                String placeId = res.get(j).getPlaceId();
                                 Double rating = res.get(j).getRating();
                                 List<Photos> photos = res.get(j).getPhotos();
                                 Integer priceLevel = res.get(j).getPriceLevel();
@@ -312,7 +314,7 @@ public class MapsActivity extends FragmentActivity implements
                                 Intent intent = new Intent(MapsActivity.this, Data.class);
                                 String user_name = "Alice";
                                 intent.putExtra("name", name);
-                                intent.putExtra("placeId", placeId);
+//                                intent.putExtra("placeId", placeId);
                                 intent.putExtra("rating", String.valueOf(rating));
                                 intent.putExtra("photos", String.valueOf(photos.get(0).getPhotoReference()));
                                 intent.putExtra("priceLevel", String.valueOf(priceLevel));
