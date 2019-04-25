@@ -10,50 +10,47 @@ import com.example.itme.R;
 
 public class ConnexionActivity extends AppCompatActivity {
 
-    private Button map;
-    private Button retour;
-    private Button rating;
+  private Button map;
+  private Button retour;
+//    private Button rating;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connexion);
-
-
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_connexion);
 
 
-        this.map = (Button) findViewById(R.id.map);
-        map.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view1) {
-                Intent otherActivity1 = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(otherActivity1);
-                finish();
-            }
-        });
+    this.map = (Button) findViewById(R.id.map);
+    map.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view1) {
+        Intent otherActivity1 = new Intent(getApplicationContext(), MapsActivity.class);
+        startActivity(otherActivity1);
+        finish();
+      }
+    });
 
 
-        retour = (Button) findViewById(R.id.retour);
-        retour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentRetour = new Intent(ConnexionActivity.this, MainActivity.class);
-                startActivity(intentRetour);
-            }
-        });
+    retour = (Button) findViewById(R.id.retour);
+    retour.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intentRetour = new Intent(ConnexionActivity.this, MainActivity.class);
+        startActivity(intentRetour);
+      }
+    });
 
-        this.rating = (Button) findViewById(R.id.rating);
-        rating.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v23) {
-                Intent otherActivity2 = new Intent(getApplicationContext(), RatingActivity.class);
-                startActivity(otherActivity2);
-                finish();
-            }
-        });
+//        this.rating = (Button) findViewById(R.id.rating);
+//        rating.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v23) {
+//                Intent otherActivity2 = new Intent(getApplicationContext(), RatingActivity.class);
+//                startActivity(otherActivity2);
+//                finish();
+//            }
+//        });
 
 
-}
+  }
 }

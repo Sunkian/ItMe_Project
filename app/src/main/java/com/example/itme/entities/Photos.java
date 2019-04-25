@@ -1,78 +1,79 @@
 package com.example.itme.entities;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Photos implements Serializable {
 
-    @SerializedName("height")
-    private Integer height;
+  @SerializedName("height")
+  private Integer height;
 
-    @SerializedName("html_attributions")
-    private List<String> htmlAttributions = new ArrayList<String>();
+  @SerializedName("html_attributions")
+  private List<String> htmlAttributions = new ArrayList<String>();
 
-    @SerializedName("photo_reference")
-    private String photoReference;
+  @SerializedName("photo_reference")
+  private String photoReference;
 
-    @SerializedName("width")
-    private Integer width;
+  @SerializedName("width")
+  private Integer width;
 
-    /**
-     * @return The height
-     */
-    public Integer getHeight() {
-        return height;
-    }
+  /**
+   * @return The height
+   */
+  public Integer getHeight() {
+    return height;
+  }
 
-    /**
-     * @param height The height
-     */
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
+  /**
+   * @param height The height
+   */
+  public void setHeight(Integer height) {
+    this.height = height;
+  }
 
-    /**
-     * @return The htmlAttributions
-     */
-    public List<String> getHtmlAttributions() {
-        return htmlAttributions;
-    }
+  /**
+   * @return The htmlAttributions
+   */
+  public List<String> getHtmlAttributions() {
+    return htmlAttributions;
+  }
 
-    /**
-     * @param htmlAttributions The html_attributions
-     */
-    public void setHtmlAttributions(List<String> htmlAttributions) {
-        this.htmlAttributions = htmlAttributions;
-    }
+  /**
+   * @param htmlAttributions The html_attributions
+   */
+  public void setHtmlAttributions(List<String> htmlAttributions) {
+    this.htmlAttributions = htmlAttributions;
+  }
 
-    /**
-     * @return The photoReference
-     */
-    public String getPhotoReference() {
-        return photoReference;
-    }
+  /**
+   * @return The photoReference
+   */
+  public String getPhotoReference() {
+    return photoReference;
+  }
 
-    /**
-     * @param photoReference The photo_reference
-     */
-    public void setPhotoReference(String photoReference) {
-        this.photoReference = photoReference;
-    }
+  /**
+   * @param photoReference The photo_reference
+   */
+  public void setPhotoReference(String photoReference) {
+    this.photoReference = photoReference;
+  }
 
-    /**
-     * @return The width
-     */
-    public Integer getWidth() {
-        return width;
-    }
+  /**
+   * @return The width
+   */
+  public Integer getWidth() {
+    return width;
+  }
 
-    /**
-     * @param width The width
-     */
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
+  /**
+   * @param width The width
+   */
+  public void setWidth(Integer width) {
+    this.width = width;
+  }
 
 }

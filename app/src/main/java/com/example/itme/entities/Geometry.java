@@ -2,19 +2,20 @@ package com.example.itme.entities;
 
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Geometry implements Serializable {
 
-    @SerializedName("location")
-    private Location location;
+  @SerializedName("location")
+  private Location location;
 
-    public Location getLocation() {
-        return location;
-    }
+  public Location getLocation() {
+    return location;
+  }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+  public void setLocation(Location location) {
+    this.location = location;
+  }
 
 }

@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@drawable/emptyreal">
 
         <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Selectionnez: "-->
-            <!--android:background="#0000"-->
-            <!--android:gravity="center"-->
-            <!--android:textSize="15dp" />-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Selectionnez: "-->
+        <!--android:background="#0000"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="15dp" />-->
 
         <Spinner
             android:layout_width="wrap_content"
@@ -33,12 +35,12 @@
         </Spinner>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/submitbutton"
-            android:text="Envoyer"
+            android:layout_width="97dp"
+            android:layout_height="28dp"
+            android:background="@drawable/sendreal"
             android:gravity="left"
-            android:textSize="15dp"/>
+            android:textSize="15dp" />
 
 
     </LinearLayout>
@@ -51,7 +53,7 @@
         android:layout_height="match_parent"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        tools:context="com.test.drawernav.LocateFragment"/>
+        tools:context="com.test.drawernav.LocateFragment" />
 
 
 </LinearLayout>

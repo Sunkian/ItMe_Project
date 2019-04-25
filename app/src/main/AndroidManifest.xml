@@ -16,8 +16,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".api.GoogleMapAPI2"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:name="GlobalVariable">
+        <activity android:name=".api.DataBaseAPI"></activity>
         <activity android:name=".Main.RatingActivity" />
         <activity android:name=".Main.Data" />
         <activity android:name=".api.GoogleMapAPI" />
