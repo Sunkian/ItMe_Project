@@ -18,8 +18,11 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.itme.GlobalVariable;
 import com.example.itme.R;
 import com.example.itme.api.APIClient;
+import com.example.itme.api.APIDataBase;
+import com.example.itme.api.DataBaseAPI;
 import com.example.itme.api.GoogleMapAPI;
 import com.example.itme.entities.Photos;
 import com.example.itme.entities.PlacesResults;
@@ -38,6 +41,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -255,26 +260,34 @@ public class MapsActivity extends FragmentActivity implements
   public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
   }
 
-  /**
-   * @param type
-   */
-  private void AccessData(String type) {
-
-    GoogleMapAPI googlemapapi = APIClient.getClient().create(GoogleMapAPI.class);
-    String currentLocation = latitude + "," + longitude;
-    String key = getText(R.string.google_maps_key).toString();
-
-
-    googlemapapi.getNearBy(currentLocation, radius, type, key).enqueue(new Callback<PlacesResults>() {
+  private int getRecommendation(final List<Result> res) {
+    List<List<Integer>> listOfRestaurant = new ArrayList<>();
+    for (int i = 0; i < res.size(); i++) {
+      Integer priceLevel = res.get(i).getPriceLevel();
+      if(priceLevel != null){
+      List<Integer> xprime = new ArrayList<Integer>(Arrays.asList(priceLevel, res.get(i).getRating().intValue()));
+      listOfRestaurant.add(xprime);
+      }
+    }
+    GlobalVariable gv = ((GlobalVariable) getApplicationContext());
+    String user = gv.getId();
+    DataBaseAPI databaseApi = APIDataBase.getClient().create(DataBaseAPI.class);
+    databaseApi.recommendation(user,listOfRestaurant).enqueue(new Callback<Integer>() {
       @Override
-      public void onResponse(Call<PlacesResults> call, Response<PlacesResults> response) {
-        res = response.body().getResults(); // On parcourt la liste, Renvoie une liste de tous les résultats (ici, restaurants), que google a enregistré dans sa base de données
+      public void onResponse(Call<Integer> call, Response<Integer> response) {
+
+        System.out.println("response:" + response.body());
         for (int i = 0; i < res.size(); i++) {
           //Afficher un markeur avec les latitudes et longitutes
           double lat = res.get(i).getGeometry().getLocation().getLat();
           double lng = res.get(i).getGeometry().getLocation().getLng();
           MarkerOptions marker = new MarkerOptions();
-          marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)); //Couleur du marker
+          if (response.body().equals(i)) {
+            marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)); //Couleur du marker
+          }
+            else{
+            marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)); //Couleur du marker
+          }
           LatLng latLng = new LatLng(lat, lng);
           String nom = res.get(i).getName();
           String placeId = res.get(i).getPlaceId();
@@ -331,6 +344,104 @@ public class MapsActivity extends FragmentActivity implements
             }
           }
         });
+      }
+
+      @Override
+      public void onFailure(Call<Integer> call, Throwable t) {
+
+      }
+    });
+    return 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  /**
+   * @param type
+   */
+  private void AccessData(String type) {
+
+    GoogleMapAPI googlemapapi = APIClient.getClient().create(GoogleMapAPI.class);
+    String currentLocation = latitude + "," + longitude;
+    String key = getText(R.string.google_maps_key).toString();
+
+
+    googlemapapi.getNearBy(currentLocation, radius, type, key).enqueue(new Callback<PlacesResults>() {
+      @Override
+      public void onResponse(Call<PlacesResults> call, Response<PlacesResults> response) {
+        res = response.body().getResults(); // On parcourt la liste, Renvoie une liste de tous les résultats (ici, restaurants), que google a enregistré dans sa base de données
+        getRecommendation(res); //
+//        for (int i = 0; i < res.size(); i++) {
+//          //Afficher un markeur avec les latitudes et longitutes
+//          double lat = res.get(i).getGeometry().getLocation().getLat();
+//          double lng = res.get(i).getGeometry().getLocation().getLng();
+//          MarkerOptions marker = new MarkerOptions();
+//          marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)); //Couleur du marker
+//          LatLng latLng = new LatLng(lat, lng);
+//          String nom = res.get(i).getName();
+//          String placeId = res.get(i).getPlaceId();
+//          String adress = res.get(i).getIcon();
+//          String vicinity = res.get(i).getVicinity();
+////Photos photo = res.get(i).getPhotos().get(0);
+////Boolean isOpen = res.get(i).getOpeningHours().getOpenNow();
+//          marker.position(latLng);
+//          marker.title(nom).snippet(vicinity);  //Le nom du marker prend le nom de restaurant
+//          mMap.addMarker(marker);  //On place le marker sur la map
+//        }
+//
+//        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {  //Permet de, quand on clique sur la bulle info du marker, aller sur une nouvelle page où on affiche toutes les infos
+//          @Override
+//          public void onInfoWindowClick(Marker marker) {   //On peut cliquer sur le marqueur et ça va nous afficher les elements suivants
+//            for (int j = 0; j < res.size(); j++) {
+//
+//
+//              if (marker.getSnippet().equals(res.get(j).getVicinity())) {
+//                double lat = res.get(j).getGeometry().getLocation().getLat();
+//                double lng = res.get(j).getGeometry().getLocation().getLng();
+//                String name = res.get(j).getName();
+//                String placeId = res.get(j).getPlaceId();
+//                Double rating = res.get(j).getRating();
+//                List<Photos> photos = res.get(j).getPhotos();
+//                Integer priceLevel = res.get(j).getPriceLevel();
+//                String vicinity = res.get(j).getVicinity();
+//                String type = res.get(j).getTypes().get(0);
+//
+//
+//                Intent intent = new Intent(MapsActivity.this, Data.class);
+//                intent.putExtra("name", name);
+//                intent.putExtra("placeId", placeId);
+//                intent.putExtra("rating", String.valueOf(rating));
+//                intent.putExtra("photos", String.valueOf(photos.get(0).getPhotoReference()));
+//                intent.putExtra("priceLevel", String.valueOf(priceLevel));
+//                intent.putExtra("address", String.valueOf(vicinity));
+//                intent.putExtra("type", String.valueOf(type));
+//
+//                Log.d("name", "name : " + name);
+//
+//                for (int k = 0; k < photos.size(); k++) {
+//                  Log.d("photos", "reference photo : " + photos.get(k).getHtmlAttributions());
+//                }
+//
+//                Log.d("photo", "photo : " + photos);
+//
+////                               //https://stackoverflow.com/questions/12210156/passing-the-image-in-putextra-in-android
+//
+//
+//                startActivity(intent);
+//
+//              }
+//            }
+//          }
+//        });
       }
 
       @Override
